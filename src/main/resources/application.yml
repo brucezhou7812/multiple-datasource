@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: multiple-datasource
+
+  datasource:
+    primary:
+      jdbc-url: jdbc:mysql://localhost:3306/user-service?useSSL=false&serverTimezone=UTC
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      persistence-unit-name: primaryPersistenceUnit
+
+    secondary:
+      jdbc-url: jdbc:mysql://localhost:3306/user-service-slave?useSSL=false&serverTimezone=UTC
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      persistence-unit-name: secondaryPersistenceUnit
+
+
+      hikari:
+        maximum-pool-size: 10
+        minimum-idle: 5
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+
+

@@ -2,11 +2,14 @@ package com.example.multipledatasource.config;
 
 import com.example.multipledatasource.common.DataSourceType;
 import com.example.multipledatasource.common.DynamicRoutingDataSource;
+import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
@@ -40,8 +43,5 @@ public class DataSourceConfig {
         return dynamicRoutingDataSource;
     }
 
-    @Bean
-    public DataSourceTransactionManager transactionManager(DataSource dynamicDataSource) {
-        return new DataSourceTransactionManager(dynamicDataSource);
-    }
+
 }
